@@ -26,3 +26,5 @@ if int(cantidadreq) > int(stock):
     print(agotado)
 else:
     print(confirmado)
+
+
