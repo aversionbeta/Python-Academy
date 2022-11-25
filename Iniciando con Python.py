@@ -16,7 +16,6 @@ print(yfloat)
 print(x==y)
 print(yfloat==x)
 
-
 # Validando a través de True or False 
 
 cantidadreq=input("Por favor ingrese la cantidad que necesita:  ")
