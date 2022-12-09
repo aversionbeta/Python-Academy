@@ -58,7 +58,7 @@ print(text[0:2:1])
 print(text[0:5:3])
 
 
-#Listas 
+#Listas - igual a arrays en JS
 
 number=[1,2,3,4,5,6]
 print(number)
@@ -114,4 +114,123 @@ newlist.append(6)
 print(type(newlist))
 print(newlist)
 
+#diccionarios - igual a objetos en JS
 
+my_dict={}
+print(type(my_dict))
+
+my_dict={
+    'name': ['David'],
+    'lastname': ['Betancur', 'Gaviria'],
+    'age':32
+}
+
+print(my_dict['age'])
+print(my_dict['lastname'])
+print(my_dict.get('noexiste'))
+
+my_dict['name']= ['Juan']
+my_dict['age']+= 1
+my_dict['lastname'].append('Uribe')
+my_dict['name'].append('David')
+my_dict['hobbies']='Jugar'
+print(my_dict)
+
+print('items',my_dict.items())
+print('keys',my_dict.keys())
+print('values',my_dict.values())
+
+del my_dict['age']
+
+print(my_dict)
+
+my_dict.pop('lastname')
+
+print(my_dict)
+
+#while 
+
+counter=0
+
+while counter<10:
+    counter+=1
+    if counter == 7:
+        break
+    print(counter)
+
+counter=0
+
+while counter<10:
+    counter+=1
+    if counter < 7:
+        continue
+    print(counter)
+
+    counter=0
+
+while counter<10:
+    counter+=1
+    if counter > 7:
+        continue
+    print(counter)
+
+#Loops 
+
+for element in range (50):
+    print(element)
+
+for element in range (2,50):
+    print(element+1)
+
+#Loops con listas y Tuplas
+
+list=[23,45,67,89,90]
+for element in list:
+    print(element)
+
+tuple=('Juan', 'David', 'Betancur')
+for element in tuple:
+    print(element)
+
+product={
+    'name': 'jean',
+    'price': 100,
+    'stock': 400
+}
+
+for key in product: 
+    print(key,'=>',product[key])
+
+for key, value in product.items(): #Lo mismo que la pasada, sólo se define value = product[key]
+    print(key,'=>',value)
+
+people=[
+    {
+        'name': 'David',
+        'age': 32
+    },
+    {
+        'name': 'Carlos',
+        'age': 70
+    },
+    {
+        'name': 'Luz',
+        'age': 65
+    }
+]
+
+for person in people:
+    print('name=>',person['name'])
+
+matriz=[
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
+# print(matriz[0])
+# print(matriz[0][1])
+
+for row in matriz:
+    print(row)
+    for item in row:
+        print(item)
