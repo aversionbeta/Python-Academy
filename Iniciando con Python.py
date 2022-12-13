@@ -234,3 +234,73 @@ for row in matriz:
     print(row)
     for item in row:
         print(item)
+
+import this
+
+#set_conjuntos
+
+numbers=[1,2,3,4,5,6,1,2,3,4,5]
+set_numbers = set(numbers)
+print(set_numbers)
+print(type(set_numbers))
+list_numbers=list(set_numbers)
+set_numbers = set(numbers)
+print(list_numbers)
+print(type(list_numbers))
+size=len(set_numbers)
+print(size)
+print(7 in set_numbers)
+set_numbers.add(7) #agregar elementos al conjunto
+print(set_numbers)
+set_numbers.update({8,9,10}) #actualizar elementos en el conjunto
+print(set_numbers)
+set_numbers.remove(10) #remover elementos en el conjunto
+print(set_numbers)
+set_numbers.clear()
+print(set_numbers) #limpiar todo el conjunto
+
+
+#operaciones entre conjuntos 
+
+set_num1={1,2,3,4,5,6,10}
+set_num2={6,7,8,9,10}
+set_num3={10,11,12,13}
+set_num4=set_num1.union(set_num2)
+print(set_num4)
+set_num5=(set_num1|set_num2|set_num3) #unión de conjuntos
+print(set_num5)
+set_num6=set_num1.intersection(set_num2) #intersección de conjuntos
+set_num9=(set_num1&set_num2&set_num3)
+print(set_num6)
+print(set_num9)
+set_num7=set_num1.difference(set_num2) #diferencia
+set_num10=(set_num1-set_num2-set_num3)
+print(set_num7)
+print(set_num10)
+set_num8=set_num1.symmetric_difference(set_num2) #diferencia simétrica (unicón sin los elementos que tienen en común)
+set_num11=(set_num1^set_num2^set_num3)
+print(set_num8)
+print(set_num11)
+
+#List Comprehensions
+
+numbers_v1=[]
+for element in range(1,11):
+    numbers_v1.append(element)
+print(numbers_v1)
+
+numbers_v2 = [element for element in range (1,11)]
+print(numbers_v2)
+
+numbers_v2 = [element*2 for element in range (1,11)]
+print(numbers_v2)
+
+numbers_v3=[]
+for i in range(1,11):
+    if i % 2 == 0:
+        numbers_v3.append(i*2)
+
+print(numbers_v3)
+
+numbers_v4=[i*2 for i in range(1,11) if i%2 ==0]
+print(numbers_v4)
