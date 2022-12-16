@@ -304,3 +304,101 @@ print(numbers_v3)
 
 numbers_v4=[i*2 for i in range(1,11) if i%2 ==0]
 print(numbers_v4)
+
+#dictionary comprenhensions
+
+dict = {}
+for i in range (1,5):
+    dict[i] = i*2
+print(dict)
+
+################
+
+dict_v2 = {i: i*2 for i in range (1,5)}
+print(dict_v2)
+
+################
+
+import random
+countries = ['col', 'mex', 'bol', 'pe']
+population = {}
+for country in countries: 
+    population[country] = random.randint(1,1000)
+print(population)
+
+####################
+
+import random
+countries = ['col', 'mex', 'bol', 'pe']
+population={country:random.randint(1,1000) for country in countries }
+print(population)
+
+###################
+names=['juan', 'david', 'andrés']
+ages= [12,15,18]
+
+print(list(zip(names,ages)))
+
+####################
+
+names=['juan', 'david', 'andrés']
+ages= [12,15,18]
+
+dict={names:ages for (names,ages) in zip(names,ages)}
+print(dict)
+
+####################
+
+import random
+countries = ['col', 'mex', 'bol', 'pe']
+
+population_v2={country: random.randint(1,100) for country in countries }
+print(population_v2)
+
+result={country: population for (country,population) in population_v2.items() if population>50}
+print(result)
+
+##################
+
+text = 'Hola mi nombre es Juan David'
+
+vowel = {c:c.upper() for c in text if c in 'aeiou'}
+print(vowel)
+
+# Funciones 
+
+def suma(a,b):
+    print(a+b)
+
+suma(2,10)
+suma(2,8)
+
+################
+
+def sum_with_for(a,b):
+    sum=0
+    for x in range (a,b):
+        sum += x
+    print(sum)
+
+sum_with_for(1,2)
+sum_with_for(1,20)
+
+#Funciones con valores por defecto 
+
+def volume(height=1,width=1,depth=1):
+    return height*width*depth
+
+result = volume()  
+print(result)  
+
+#########
+
+def volume(height=1,width=1,depth=1):
+    return height*width*depth, width, 'Resultado'
+
+result, widht, text = volume(width=10)
+
+print(result)
+print(widht)  
+print(text)
