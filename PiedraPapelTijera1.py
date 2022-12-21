@@ -1,74 +1,78 @@
 # Piedra papel o tijeras 
 
-import random 
-
-options= ('Piedra', 'Papel', 'Tijera')
-
-pcscore=0
-userscore=0
-rounds=1
-
-while True: 
-    print('*'* 10)
-    print('ROUND', round)
-    print('*'* 10)
-
-    print('PC Score:', pcscore)
-    print('User Score', userscore)
-
-    username= input("Introduzca su nombre: ")
-    userselec=input("Introduzca la palabra: Piedra, Papel o Tijera para jugar => ")
-    pcselec=random.choice(options)
-    pcwins=print(f"Usted ha escogido {userselec} y la máquina ha escogido {pcselec}. La Máquina gana")
-    userwins=print(f"Usted ha escogido {userselec} y la máquina ha escogido {pcselec}. {username} gana")
-    tie=print(f"La selección de la máquina ha sido {pcselec} y la suya {userselec}. Hay un Empate")
-
-    if not userselec in options:
-        print('Esta opción no es válida, por favor elija una opción correcta')
-        continue
-
-    print('User option =>', userselec)
-    print('Computer´s option', pcselec)
-
-    if userselec==pcselec:
-        tie
-    elif userselec=="Piedra": 
-        if pcselec=="Tijera":
-            userwins
-            userscore+1
-    elif userselec=="Piedra": 
-        if pcselec=="Papel":
-            pcwins
-            pcscore+1
-    elif userselec=="Papel": 
-        if pcselec=="Piedra":
-            userwins
-            userscore+1
-    elif userselec=="Piedra": 
-        if pcselec=="Tijera":
-            userwins
-            userscore+1
-    elif userselec=="Tijera": 
-        if pcselec=="Piedra":
-            pcwins
-            pcscore+1
-    elif userselec=="Papel": 
-        if pcselec=="Tijera":
-            pcwins
-            pcscore+1
-    elif userselec=="Tijera": 
-        if pcselec=="Papel":
-            userwins
-            userscore+1
-    else: 
-        print("Error al introducit el valor. Asegurese que no hay espacios")
-    if pcscore==2:
-        print('El ganador es el PC')
-        break 
-
-    if userscore==2:
-        print('El ganador es el usuario')
-        break 
-    round+=1
+import random
 
 
+def choose_options():
+  options = ('piedra', 'papel', 'tijera')
+  user_option = input('piedra, papel o tijera => ')
+  user_option = user_option.lower()
+
+  if not user_option in options:
+    print('esa opcion no es valida')
+    # continue
+    return None, None
+
+  computer_option = random.choice(options)
+
+  print('User option =>', user_option)
+  print('Computer option =>', computer_option)
+  return user_option, computer_option
+
+def check_rules(user_option, computer_option, user_wins, computer_wins):
+  if user_option == computer_option:
+    print('Empate!')
+  elif user_option == 'piedra':
+    if computer_option == 'tijera':
+      print('piedra gana a tijera')
+      print('user gano!')
+      user_wins += 1
+    else:
+      print('Papel gana a piedra')
+      print('computer gano!')
+      computer_wins += 1
+  elif user_option == 'papel':
+    if computer_option == 'piedra':
+      print('papel gana a piedra')
+      print('user gano')
+      user_wins += 1
+    else:
+      print('tijera gana a papel')
+      print('computer gano!')
+      computer_wins += 1
+  elif user_option == 'tijera':
+    if computer_option == 'papel':
+      print('tijera gana a papel')
+      print('user gano!')
+      user_wins += 1
+    else:
+      print('piedra gana a tijera')
+      print('computer gano!')
+      computer_wins += 1
+  return user_wins, computer_wins
+
+def run_game():
+  computer_wins = 0
+  user_wins = 0  
+  rounds = 1
+  while True:
+    print('*' * 10)
+    print('ROUND', rounds)
+    print('*' * 10)
+
+    print('computer_wins', computer_wins)
+    print('user_wins', user_wins)
+    rounds += 1
+
+    user_option, computer_option = choose_options()
+    user_wins, computer_wins = check_rules(user_option, computer_option, user_wins, computer_wins)
+
+    if computer_wins == 2:
+      print('El ganador es la computadora')
+      break
+
+    if user_wins == 2:
+      print('El ganador es el usuario')
+      break
+
+run_game()

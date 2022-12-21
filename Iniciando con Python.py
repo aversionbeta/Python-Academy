@@ -402,3 +402,30 @@ result, widht, text = volume(width=10)
 print(result)
 print(widht)  
 print(text)
+
+#lambda
+
+full_name = lambda name, last_name : f'El nombre completo es {name.title()} {last_name.title()}'
+text= full_name('juan', 'david')
+print (text)
+
+#HOF
+
+def increment(x):
+    return x + 1
+
+def hof(x,func):
+    return x + func(x)
+
+result = hof(2,increment)
+
+print(result)
+
+###########
+
+increment = lambda x: x+1
+
+hof = lambda x, func: x+func(x)
+
+result = hof(2,increment)
+print(result)
