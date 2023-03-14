@@ -421,11 +421,137 @@ result = hof(2,increment)
 
 print(result)
 
-###########
-
+##############
 increment = lambda x: x+1
 
 hof = lambda x, func: x+func(x)
 
 result = hof(2,increment)
 print(result)
+
+#map function
+
+numbers = [1,2,3,4]
+numbers_v2 = []
+
+for i in numbers:
+    numbers_v2.append(i*2)
+
+numbers_v3 = list(map(lambda i: i*2, numbers))
+
+
+print(numbers)
+print(numbers_v2)
+print(numbers_v3)
+
+####################
+
+numbers=[1,2,3,4]
+numbers2=[5,6,7]
+
+result = list(map(lambda x,y: x+y, numbers, numbers2))
+
+print(numbers)
+print(numbers2)
+print(result)
+
+#Maps with dictionaries
+
+items = [
+    {
+        'product': 'book',
+        'price': 100,
+    },
+    {
+        'product': 'paper',
+        'price': 300
+    },
+    {
+        'product': 'pants',
+        'price': 200
+    }
+]
+
+prices = list(map(lambda item: item['price'], items))
+products = list(map(lambda item: item['product'], items))
+print(prices)
+print(products)
+
+def add_taxes(items):
+    new_item= items.copy()
+    new_item['taxes']=new_item['price']*0.19
+    return new_item
+    
+new_items = list(map(add_taxes, items))
+print(items)
+print(new_items)
+
+# Filter 
+
+numbers = [1,2,3,4,5]
+new_numbers = list(filter(lambda x: x%2 == 0, numbers))
+print(new_numbers)
+
+#Filter with dictionaries
+
+matches = [
+    {
+    'home_team': 'Bolivia',
+    'away_team': 'Uruguay',
+    'home_team_score': 3,
+    'away_team_score': 1,
+    'home_team_result': 'Win'
+    },
+    {
+    'home_team': 'Brazil',
+    'away_team': 'Mexico',
+    'home_team_score': 1,
+    'away_team_score': 1,
+    'home_team_result': 'Draw'
+    },
+    {
+    'home_team': 'Ecuador',
+    'away_team': 'Venezuela',
+    'home_team_score': 5,
+    'away_team_score': 0,
+    'home_team_result': 'Win'
+    },
+]
+
+print(matches)
+print(len(matches))
+
+new_list = list(filter(lambda item: item['home_team_result'] == 'Win', matches))
+
+print(new_list)
+print(len(new_list))
+
+#Reduce 
+import functools
+
+numbers = [1,2,3,4]
+result = functools.reduce(lambda x,y: x+y, numbers)
+print(result)
+
+#Modules 
+
+import sys
+print(sys.path)
+
+import re
+text = 'Mi número es 311 333 33, el código es 57, mi número es 7'
+result = re.findall('[0-9]+',text)
+print(result)
+
+import time
+timestamp = time.time()
+local = time.localtime()
+result = time.asctime(local)
+
+print (result)
+
+import collections
+numbers = [1,1,2,1,2,1,4,5,3,21]
+counter = collections.Counter(numbers)
+print(counter)
+
