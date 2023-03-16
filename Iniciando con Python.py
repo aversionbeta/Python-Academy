@@ -555,3 +555,106 @@ numbers = [1,1,2,1,2,1,4,5,3,21]
 counter = collections.Counter(numbers)
 print(counter)
 
+#Iterables
+for i in range(1,11):
+    print(i)
+
+my_iter = iter(range(1,11))
+print(my_iter)
+print(next(my_iter))
+print(next(my_iter))
+
+#Error
+
+try:
+    print(0/0)
+except ZeroDivisionError as error:
+    print(error)
+
+try:
+    assert 1 != 1
+except AssertionError as error:
+    print(error)
+
+try:
+    age=10
+    if age < 18:
+        raise Exception('No se permiten menores de edad')
+except Exception as error:
+    print(error)
+    
+try:
+    print(0/0)
+    assert 1 != 1
+    age=10
+    if age < 18:
+        raise Exception('No se permiten menores de edad')
+except ZeroDivisionError as error:
+    print(error)
+except AssertionError as error:
+    print(error)
+except Exception as error:
+    print(error)    
+
+print('Hola')
+
+#Reading Files
+
+file = open('./file.txt')
+print(file.read())
+
+print(file.readline())
+print(file.readline())
+
+file = open('./file.txt')
+print(file.read())
+
+for line in file:
+    print(line)
+file.close()
+
+#Modifying Files
+
+with open('./file.txt', 'r+') as file: #r+ read and write (append)
+    for line in file:
+        print(line)
+    file.write('Nueva Prueba\n')
+
+with open('./file.txt', 'w+') as file: #w+ overwrites
+    for line in file:
+        print(line)
+    file.write('Nueva Prueba\n')
+
+# Working with CSV
+
+import csv
+
+def read_csv(path):
+    with open(path, 'r') as csvfile:
+        reader = csv.reader(csvfile, delimiter=",")
+        header = next(reader)
+        for row in reader:
+            iterable = zip(header, row)
+            country_dict = {key:value for (key,value) in iterable}
+            data.append(country_dict)
+        return data
+
+if __name__ == '__main__':
+    data = read_csv('./data.csv')
+    print(data)
+
+# Creating Graphics
+
+import matplotlib.pyplot as plt
+
+def bar_chart(labels, values):
+
+    fig,ax = plt.subplots()
+    ax.bar(labels,values)
+    plt.show()
+
+if __name__ == '__main__':
+        labels = ['A', 'B', 'C']
+        values = [10, 20, 30]
+        bar_chart(labels)
+
