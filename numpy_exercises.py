@@ -58,4 +58,65 @@ arrtype = arrtype.astype(np.string_)
 
 print(arrtype)
 
+#Creando arrays 
 
+arr_c=list(range(0,10,2))
+print (arr_c)
+
+import numpy as np
+np.arange(0,10,2)
+np.zeros(5)
+np.zeros((10,5))
+np.ones((10,5))
+np.linspace(0,10,10)
+np.linspace(0,10,100)
+np.eye(4)
+np.random.rand(4)
+np.random.rand(4,4)
+np.random.randint(4,100,(10,10))
+
+#Shape and Reshape
+
+import numpy as np
+
+arr_shape=np.random.randint(1,10,(3,2))
+arr_shape.shape
+arr_shape.reshape(1,6)
+np.reshape(arr_shape,(2,3),'C')
+np.reshape(arr_shape,(2,3),'F')
+np.reshape(arr_shape,(2,3),'A')
+
+#Principal Functions
+
+import numpy as np
+
+arr_pf=np.random.randint(1,9,10)
+matriz_pf=arr_pf.reshape(2,5)
+arr_pf.max()
+arr_pf.max(0)
+print(matriz_pf)
+matriz_pf.max(0)
+matriz_pf.max(1)
+arr_pf.min()
+arr_pf.min(0)
+print(matriz_pf)
+matriz_pf.min(0)
+matriz_pf.min(1)
+matriz_pf.argmin()
+matriz_pf.ptp()
+print(arr_pf)
+np.percentile(arr_pf,50)
+np.percentile(arr_pf,25)
+np.median(arr_pf)
+np.std(arr_pf)
+np.var(arr_pf)
+np.mean(arr_pf)
+a=np.array([[1,2],[3,4]])
+b=np.array([6,7])
+a.ndim
+b.ndim
+b=np.expand_dims(b,axis=0)
+np.concatenate((a,b),axis=0)
+np.concatenate((a,b.T),axis=1)
+b
+b.T
