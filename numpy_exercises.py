@@ -120,3 +120,45 @@ np.concatenate((a,b),axis=0)
 np.concatenate((a,b.T),axis=1)
 b
 b.T
+
+#Copy
+import numpy as np
+copy = np.arange(0,11)
+slicing_arr = copy.copy[0:6]
+slicing_arr
+slicing_arr[:]=0
+slicing_arr
+copy
+
+#Conditions
+
+import numpy as np
+con=np.linspace(1,10,10, dtype='int8')
+index_conditions=con>5
+con[index_conditions]
+con[(con>5)&(con<9)]
+
+#Operations
+
+import numpy as np
+lista=[1,2]
+lista
+lista *2
+arr=np.arange(0,10)
+arr2=arr.copy()
+arr
+arr*2
+arr+2
+arr**2
+arr+arr2
+matriz = arr.reshape(2,5)
+matriz2=matriz.copy()
+matriz
+matriz+matriz
+np.matmul(matriz,matriz2.T)
+matriz@matriz2.T
+
+
+
+
+
