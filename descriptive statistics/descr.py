@@ -49,3 +49,62 @@ sns.boxplot(data=iris, x='sepal_length', hue='species')
 plt.show()
 sns.barplot(data=iris, x='species', y='petal_length')
 plt.show()
+
+#Numerical data scaling
+
+import timeit as tm
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import datasets, linear_model 
+
+X,y = datasets.load_diabetes(return_X_y=True)
+raw = X[:, None, 2]
+
+#Scaling model
+
+max_raw = max (raw)
+min_raw = min (raw)
+scaled = (2*raw - max_raw - min_raw) / (max_raw - min_raw)
+
+fig, axs = plt.subplots(2,1, sharex=True)
+axs[0].hist(raw)
+axs[1].hist(scaled)
+plt.show()
+
+#Training model 
+def train_raw():
+    linear_model.LinearRegression().fit(raw,y)
+
+def train_scaled():
+    linear_model.LinearRegression().fit(scaled,y)
+
+raw_time = tm.timeit(train_raw, number=100)
+scaled_time = tm.timeit(train_scaled, number=100)
+print('train raw : {}'.format(raw_time))
+print('train raw : {}'.format(scaled_time))
+
+#Non lineal transformations 
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = []
+df = pd.read_csv('descriptive statistics\datasetcars.csv')
+df.price_usd.hist()
+p=10000
+plt.show()
+df.price_usd.apply(lambda x: np.tanh(x/p)).hist()
+plt.show()
+
+#Categoric variables
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import sklearn.preprocessing as skpre
+df = []
+df = pd.read_csv('descriptive statistics\datasetcars.csv')
+pd.get_dummies(df['engine_type']) #onehot
+encoder = skpre.OneHotEncoder(handle_unknown='ignore')
+encoder.fit(df[['engine_type']].values)
+encoder.transform([['gasoline'],['diesel'],['aceite']]).toarray()
