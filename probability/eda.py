@@ -27,3 +27,34 @@ df = palmerpenguins.load_penguins_raw()
     # preprocessed_df= palmerpenguins.load_penguins()
     # sns.load_dataset('penguins')
     # pd.read_csv('https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv')
+
+
+df.dtypes
+
+df.dtypes.value_counts()
+
+df.shape
+
+df.isnull
+df.isnull().any()
+df.isnull().sum()
+df.isnull().melt()
+df.isnull().melt().pipe(lambda df: 
+                        (sns.displot(
+                            data=df,
+                            y='variable',
+                            hue='value',
+                            multiple = 'fill'
+                            )))
+
+plt.show()
+
+df.isnull().transpose()
+df.dropna()
+df.shape
+df.info()
+df.describe(include='all')
+df.describe(include=[np.number])
+df.describe(include=object)
+df.Species.value_counts().plot(kind='bar')
+plt.show()
