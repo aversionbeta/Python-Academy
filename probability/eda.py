@@ -58,3 +58,37 @@ df.describe(include=[np.number])
 df.describe(include=object)
 df.Species.value_counts().plot(kind='bar')
 plt.show()
+
+sns.catplot(
+    data=df,
+    x='Species',
+    kind='count',
+    
+)
+plt.show()
+
+df.value_counts('Species', sort=True).reset_index(name='count').pipe(lambda df: sns.barplot(df, x='Species',y='count'))
+plt.show()
+
+
+df['x'] = ''
+sns.displot(df, x='x', hue='Species', multiple='fill')
+plt.show()
+
+df.describe(include=[np.number])
+df.info()
+df.mean()
+df.median()
+df.mode()
+df.mode(numeric_only=True)
+df.max()
+df.max(numeric_only=True)
+df.min()
+df.min(numeric_only=True)
+df.max(numeric_only=True)-df.min(numeric_only=True)
+df.std()
+df.quantile(0.75)
+df.quantile(0.25)
+df.quantile(0.75)-df.quantile(0.25)
+df.quantile(q=[0.25,0.5,0.75]).transpose().rename_axis('Variable').reset_index().assign(iqr=lambda df: df[0.75]-df[0.25])
+
