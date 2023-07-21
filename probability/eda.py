@@ -17,11 +17,7 @@ sns.set_style(style='whitegrid')
 sns.set_context(context='notebook')
 plt.rcParams['figure.figsize'] = (11, 9.4)
 
-penguin_color = {
-    'Adelie': '#ff6602ff',
-    'Gentoo': '#0f7175ff',
-    'Chinstrap': '#c65dc9ff'
-}
+
 
 df = palmerpenguins.load_penguins_raw()
     # preprocessed_df= palmerpenguins.load_penguins()
