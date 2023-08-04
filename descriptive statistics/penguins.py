@@ -60,4 +60,87 @@ for i, i_col in enumerate(specie):
         ) 
 plt.show()
         
+sns.jointplot(
+data=processed_df,
+x='bill_length_mm',
+y='bill_depth_mm',
+palette=penguin_color,
+hue='species')
+
+plt.show()
+
+sns.scatterplot(
+    data=processed_df,
+    x='bill_length_mm',
+    y='bill_depth_mm',
+    alpha = 1/2, #transparencia
+    s=100 #tamaño de los puntos
+)
+plt.show()
+
+sns.displot(
+    data= processed_df,
+    x='bill_length_mm',
+    y='bill_depth_mm',
+    rug=True, #muestra una linea de distribucion para cada variable,
+    kind='kde'
+)
+plt.show()
+
+sns.displot(
+    data= processed_df,
+    x='bill_length_mm',
+    y='bill_depth_mm',
+    rug=True #muestra una linea de distribucion para cada variable
+)
+plt.show()
+
+sns.scatterplot(
+    data=processed_df,
+    x='species',
+    y='flipper_length_mm',
+    hue='species',
+    palette=penguin_color
+)
+plt.show()
+
+sns.stripplot(
+    data=processed_df,
+    x='flipper_length_mm',
+    y='species',
+    color='.3'
+)
+sns.boxplot(
+    data=processed_df,
+    x='flipper_length_mm',
+    y='species',
+    hue='species',
+    palette=penguin_color
+)
+plt.show()
+
+sns.violinplot(
+    data=processed_df,
+    x='species',
+    y='flipper_length_mm',
+    color='.8'
+)
+
+sns.stripplot(
+    data=processed_df,
+    x='species',
+    y='flipper_length_mm',
+    palette=penguin_color
+)
+
+plt.show()
+
+sns.swarmplot(
+    data=processed_df,
+    x='species',
+    y='flipper_length_mm',
+    palette=penguin_color
+)
+
+plt.show()
 
