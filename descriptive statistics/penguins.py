@@ -144,3 +144,102 @@ sns.swarmplot(
 
 plt.show()
 
+#Correlations
+
+processed_df.corr()
+
+sns.heatmap(
+    processed_df.corr(),
+    annot= True,
+    cmap='coolwarm',
+    center=0,
+    vmin=-1,
+    vmax=1,
+    linewidths=0.5
+)
+
+plt.show()
+
+sns.clustermap(
+    processed_df.corr(),
+    annot= True,
+    cmap='coolwarm',
+    center=0,
+    vmin=-1,
+    vmax=1,
+    linewidths=0.5
+)
+
+plt.show()
+
+processed_df= processed_df.assign(
+    numeric_sex = lambda df: df.sex.replace(['female', 'male'],[0,1])
+)
+
+sns.clustermap(
+    processed_df.corr(),
+    annot= True,
+    cmap='coolwarm',
+    center=0,
+    vmin=-1,
+    vmax=1,
+    linewidths=0.5
+)
+
+plt.show()
+
+raw_df= palmerpenguins.load_penguins_raw()
+processed_df=palmerpenguins.load_penguins()
+
+np.random.seed(42)
+x1 = np.linspace(0,100,100)
+y1 = 0.1* x1 +3 + np.random.uniform(-2,2,size=x1.size)
+x2 = np.linspace(0,100,100)
+y2 = 0.5* x1 +1 + np.random.uniform(0,60,size=x2.size)
+
+answ1=[]
+answ2=[]
+answ1 = sp.linregress( 
+                            x=x1,
+                            y=y1
+                            )
+
+answ2=sp.linregress(x=x2,y=y2
+                            )
+
+print(answ1,answ2, sep='\n')
+
+sns.scatterplot(data=processed_df,
+                x='bill_length_mm',
+                y='bill_depth_mm')
+
+plt.show()
+
+answ_penguins = sp.linregress(
+    x=processed_df.bill_length_mm,
+    y=processed_df.bill_depth_mm
+)
+
+print(answ_penguins)
+    
+sns.lmplot(data=processed_df,
+                x='bill_length_mm',
+                y='bill_depth_mm',
+                height=10)
+
+plt.show()
+
+x=processed_df.bill_length_mm,
+y=processed_df.bill_depth_mm
+answ_x_y=sp.linregress(x=x, y=y)
+answ_y_x=sp.linregress(x=y, y=x)
+
+print(answ_x_y, answ_y_x, sep='\n')
+
+sns.lmplot(data=processed_df,
+                x='bill_length_mm',
+                y='bill_depth_mm')
+
+sns.lmplot(data=processed_df,
+                y='bill_length_mm',
+                x='bill_depth_mm')
