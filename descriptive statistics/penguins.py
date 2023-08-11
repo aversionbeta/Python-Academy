@@ -243,3 +243,103 @@ sns.lmplot(data=processed_df,
 sns.lmplot(data=processed_df,
                 y='bill_length_mm',
                 x='bill_depth_mm')
+
+
+model_1 = (
+    smf.ols(
+        formula='body_mass_g ~ bill_length_mm',
+        data=processed_df
+    )
+    .fit()
+)
+
+model_1.summary()
+
+model_2 = (
+    smf.ols(
+        formula='body_mass_g ~ bill_length_mm + bill_depth_mm',
+        data=processed_df
+    )
+    .fit()
+)
+
+model_2.summary()
+
+model_3 = (
+    smf.ols(
+        formula='body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm',
+        data=processed_df
+    )
+    .fit()
+)
+
+model_3.summary()
+
+model_4 = (
+    smf.ols(
+        formula='body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm + C(sex)',
+        data=processed_df
+    )
+    .fit()
+)
+
+model_4.summary()
+
+model_5 = (
+    smf.ols(
+        formula='body_mass_g ~ flipper_length_mm + C(sex)',
+        data=processed_df
+    )
+    .fit()
+)
+
+model_5.summary()
+
+models_result = pd.DataFrame(
+    dict(
+        actual_value = processed_df.body_mass_g,
+        prediction_model_1 = model_1.predict(),
+        prediction_model_2 = model_2.predict(),
+        prediction_model_3 = model_3.predict(),
+        prediction_model_4 = model_4.predict(),
+        prediction_model_5 = model_5.predict(),
+        species=processed_df.species,
+        sex=processed_df.sex
+    )
+)
+
+models_result 
+
+sns.ecdfplot(
+    data=models_result
+)
+
+sns.ecdfplot(
+    data=models_result.select_columns(['actual_value', 'prediction_model_5'])
+)
+
+sns.kdeplot(
+    data=models_result,
+    cumulative=True)
+
+sns.lmplot(
+    data=processed_df,
+    x='flipper_length_mm',
+    y='body_mass_g',
+    hue='sex',
+    height=10
+)
+
+smf.logit(
+    formula='numeric_sex ~ flipper_length_mm + bill_length_mm + bill_depth_mm + C(island)',
+    data=processed_df
+).fit().summary()
+
+(
+    processed_df
+    .value_counts(['island', 'sex'])
+    .reset_index(name='count')
+)
+
+sns.pairplot(data=processed_df, hue='species')
+plt.show()
