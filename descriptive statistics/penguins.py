@@ -40,6 +40,8 @@ species
 categories = processed_df.select_dtypes(include=object).keys()
 categories
 
+processed_df.describe()
+
 fig, axes = plt.subplots(3, 4, figsize= (12,9))
 fig.suptitle('Normal distribution with Probability density distribution')
 for i, i_col in enumerate(specie):
