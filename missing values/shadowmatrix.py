@@ -96,3 +96,32 @@ def column_fill_with_dummies(
     column[missing_mask] = column_shift + column_jitter
 
     return column
+
+
+riskfactors_df.select_dtypes(
+        exclude='category'  # excluye las variables categoricas
+    ).pipe(
+        lambda df: df[df.columns[df.isna().any()]] #seleccionar solo columnas que tengan valores faltantes
+    ).missing.bind_shadow_matrix(true_string = True, false_string = False).apply(
+        lambda column: column if '_NA' in column.name else column_fill_with_dummies(column, proportion_below=0.05, jitter=0.075)
+    ).assign(
+        nullity = lambda df: df.weight_lbs_NA | df.height_inch_NA
+    ).pipe(
+        lambda df: (
+            sns.scatterplot(
+                data = df,
+                x='weight_lbs',
+                y= 'height_inch',
+                hue='nullity'
+            )
+        )
+    )
+
+
+missingno.heatmap(
+    df=riskfactors_df
+)
+
+missingno.dendrogram(
+    df=riskfactors_df   
+)
